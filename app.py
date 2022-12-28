@@ -47,75 +47,59 @@ encode = base64.b64encode(open(path_img, 'rb').read()).decode('ascii')
 
 
 # viz card
+person_cases_value = df_bmo[(df_bmo['type_validation']=='True ') & (df_bmo['type_object']=='Person') ].count()["violate_count"]
+person_cases_value = hd_d_cases_value = f'{person_cases_value:,}'.replace(',', '.')
 person_cases = [
     dbc.CardHeader('Temuan Person'),
     dbc.CardBody([
-        html.H1(df_bmo[(df_bmo['type_validation']=='True ') & (df_bmo['type_object']=='Person') ].count()["violate_count"])
+        html.H1(person_cases_value)
     ]),
 ]
+
+hd_d_cases_value = df_bmo[(df_bmo['type_validation']=='True ') & (df_bmo['type_object']=='HD-D') ].count()["violate_count"]
+hd_d_cases_value = f'{hd_d_cases_value:,}'.replace(',', '.')
 hd_d_cases = [
     dbc.CardHeader('Temuan HD Hadap Depan'),
     dbc.CardBody([
-        html.H1(df_bmo[(df_bmo['type_validation']=='True ') & (df_bmo['type_object']=='HD-D') ].count()["violate_count"])
+        html.H1(hd_d_cases_value)
     ]),
 ]
+
+hd_b_cases_value = df_bmo[(df_bmo['type_validation']=='True ') & (df_bmo['type_object']=='HD-B') ].count()["violate_count"]
+hd_b_cases_value = f'{hd_b_cases_value:,}'.replace(',', '.')
 hd_b_cases = [
     dbc.CardHeader('Temuan HD Hadap Belakang'),
     dbc.CardBody([
-        html.H1(df_bmo[(df_bmo['type_validation']=='True ') & (df_bmo['type_object']=='HD-B') ].count()["violate_count"])
+        html.H1(hd_b_cases_value)
     ]),
 ]
+
+hd_ka_cases_value = df_bmo[(df_bmo['type_validation']=='True ') & (df_bmo['type_object']=='HD-KA') ].count()["violate_count"]
+hd_ka_cases_value = f'{hd_ka_cases_value:,}'.replace(',', '.')
 hd_ka_cases = [
     dbc.CardHeader('Temuan HD Hadap Kanan'),
     dbc.CardBody([
-        html.H1(df_bmo[(df_bmo['type_validation']=='True ') & (df_bmo['type_object']=='HD-KA') ].count()["violate_count"])
+        html.H1(hd_ka_cases_value)
     ]),
 ]
+
+hd_ki_cases_value = df_bmo[(df_bmo['type_validation']=='True ') & (df_bmo['type_object']=='HD-KI') ].count()["violate_count"]
+hd_ki_cases_value = f'{hd_ki_cases_value:,}'.replace(',', '.')
 hd_ki_cases = [
     dbc.CardHeader('Temuan HD Hadap Kiri'),
     dbc.CardBody([
-        html.H1(df_bmo[(df_bmo['type_validation']=='True ') & (df_bmo['type_object']=='HD-KI') ].count()["violate_count"])
+        html.H1(hd_ki_cases_value)
     ]),
 ]
+
+lv_cases_value = df_bmo[(df_bmo['type_validation']=='True ') & (df_bmo['type_object']=='LV') ].count()["violate_count"]
+lv_cases_value = f'{lv_cases_value:,}'.replace(',', '.')
 lv_cases = [
     dbc.CardHeader('Temuan LV'),
     dbc.CardBody([
-        html.H1(df_bmo[(df_bmo['type_validation']=='True ') & (df_bmo['type_object']=='LV') ].count()["violate_count"])
+        html.H1(lv_cases_value)
     ]),
 ]
-
-
-
-# tabs True bar_tf_true
-validasi = df_bmo[df_bmo['type_validation']=='True ']
-val = pd.crosstab(index=[validasi['type_object'],validasi['type_validation']],
-            columns='Total',
-            values=validasi['violate_count'],
-            aggfunc='sum').sort_values(by=['Total'], ascending = False)
-
-val.reset_index(inplace=True)
-
-fig_bar_tf_true = px.bar(val, x="type_object", y='Total', text_auto='.2s', 
-                    labels={
-                        "type_object": "Type Object",
-                    },
-                    title="Temuan Berdasarkan Object")
-
-
-# tabs True bar_tf_False          
-validasi = df_bmo[df_bmo['type_validation']=='False ']
-val = pd.crosstab(index=[validasi['type_object'],validasi['type_validation']],
-            columns='Total',
-            values=validasi['violate_count'],
-            aggfunc='sum').sort_values(by=['Total'], ascending = False)
-
-val.reset_index(inplace=True)
-
-fig_bar_tf_false = px.bar(val, x="type_object", y='Total', text_auto='.2s', 
-                    labels={
-                        "type_object": "Type Object",
-                    },
-                    title="Temuan Berdasarkan Object")
 
 
 # tabs True bar_c_true

@@ -102,6 +102,39 @@ lv_cases = [
 ]
 
 
+
+# tabs True bar_tf_true
+validasi = df_bmo[df_bmo['type_validation']=='True ']
+val = pd.crosstab(index=[validasi['type_object'],validasi['type_validation']],
+            columns='Total',
+            values=validasi['violate_count'],
+            aggfunc='sum').sort_values(by=['Total'], ascending = False)
+
+val.reset_index(inplace=True)
+
+fig_bar_tf_true = px.bar(val, x="type_object", y='Total', text_auto='.2s', 
+                    labels={
+                        "type_object": "Type Object",
+                    },
+                    title="Temuan Berdasarkan Object")
+
+
+# tabs True bar_tf_False          
+validasi = df_bmo[df_bmo['type_validation']=='False ']
+val = pd.crosstab(index=[validasi['type_object'],validasi['type_validation']],
+            columns='Total',
+            values=validasi['violate_count'],
+            aggfunc='sum').sort_values(by=['Total'], ascending = False)
+
+val.reset_index(inplace=True)
+
+fig_bar_tf_false = px.bar(val, x="type_object", y='Total', text_auto='.2s', 
+                    labels={
+                        "type_object": "Type Object",
+                    },
+                    title="Temuan Berdasarkan Object")
+
+
 # tabs True bar_c_true
 val_c = df_bmo_c[df_bmo_c['type_validation']=='True ']
 

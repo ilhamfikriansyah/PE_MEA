@@ -116,7 +116,7 @@ fig_bar_tf_true = px.bar(val, x="type_object", y='Total', text_auto='.2s',
                     labels={
                         "type_object": "Type Object",
                     },
-                    title="Temuan Berdasarkan Object")
+                    title="Temuan Berdasarkan Jumlah Object")
 
 
 # tabs True bar_tf_False          
@@ -132,7 +132,7 @@ fig_bar_tf_false = px.bar(val, x="type_object", y='Total', text_auto='.2s',
                     labels={
                         "type_object": "Type Object",
                     },
-                    title="Temuan Berdasarkan Object")
+                    title="Temuan Berdasarkan Jumlah Object")
 
 
 # tabs True bar_c_true
